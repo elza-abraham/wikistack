@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/wiki', wikiRoute)
 app.use('/user', userRoute)
 // app.get("/", (req, res) => res.send("Hello World!"));
-app.get('/',(request, response) => {
+app.get('/', (request, response) => {
   response.redirect('/wiki');
 })
 const init = async () => {

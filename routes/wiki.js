@@ -1,18 +1,29 @@
 const express = require('express');
 const router = express.Router()
 const addPage = require('../views/addPage')
+const {Page} = require('../models')
 
+const slugify = function(title){
+  return title.replace(/\s+/g, '_').replace(/\W/g, '')
+}
 router.get('/', (request, response, next) => {
   try{
     response.send("wiki page get");
   } catch (error) { next(error) }
 })
 
-router.post('/', (request, response, next) => {
-  try{
-    const {name, email, content, title, status} =  request.body;
+router.post('/', async (request, response, next) => {
 
-    response.send(name);
+
+  const page = new Page({
+    title: request.body.title,
+    content: request.body.content,
+    slug: slug(request.body.title)
+  })
+
+  try{
+    await page.save();
+    response.redirect('/')
   } catch (error) { next(error) }
 })
 router.get('/add', (request, response, next) => {
