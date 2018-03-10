@@ -5,8 +5,6 @@ const path = require('path');
 
 const app = express();
 
-
-const models = require('./models');
 const wikiRoute = require('./routes/wiki')
 const userRoute = require('./routes/user')
 
@@ -21,12 +19,6 @@ app.use('/user', userRoute)
 app.get('/', (request, response) => {
   response.redirect('/wiki');
 })
-const init = async () => {
-  await models.Page.sync();
-  await models.User.sync();
-  await models.db.sync({force: true})
-}
 
-init();
 
 module.exports = app;

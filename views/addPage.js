@@ -6,7 +6,7 @@ module.exports = () => layout(html`
   <hr>
   <form method="POST" action="/wiki/">
     <div  class="form-group">
-      <label for="name" class="col-sm-2 control-label">Name</label>
+      <label for="name" class="col-sm-2 control-label">Author Name</label>
       <div class="col-sm-10">
         <input id="name" name="name" type="text" class="form-control"/>
       </div>
@@ -26,16 +26,17 @@ module.exports = () => layout(html`
     <div class="form-group">
       <label for="content" class="col-sm-2 control-label">Content</label>
       <div class="col-sm-10">
-        <textarea name="content" id ="content"  class="form-control">
-
+        <textarea name="content"  class="form-control">
         </textarea>
-
       </div>
     </div>
     <div class="form-group">
       <label for="status" class="col-sm-2 control-label">Status</label>
       <div class="col-sm-10">
-        <input id="status" name="status" type="text" class="form-control"/>
+        <select name="status">
+          <option>open</option>
+          <option>close</option>
+        </select>
       </div>
     </div>
     <div class="col-sm-offset-2 col-sm-10">
