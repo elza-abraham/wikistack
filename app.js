@@ -11,7 +11,7 @@ const wikiRoute = require('./routes/wiki')
 const userRoute = require('./routes/user')
 
 app.use(morgan('dev'));
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, './public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -25,10 +25,8 @@ const init = async () => {
   await models.Page.sync();
   await models.User.sync();
   await models.db.sync({force: true})
-  const PORT = 3000;
-  app.listen(PORT, () => {
-    console.log(`App listening in port ${PORT}`);
-  });
 }
 
 init();
+
+module.exports = app;
