@@ -1,13 +1,19 @@
-const express = require("express");
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
-const models = require('./models');
 
+
+const models = require('./models');
 const wikiRoute = require('./routes/wiki')
 const userRoute = require('./routes/user')
-const bodyParser = require('body-parser');
 
+app.use(morgan('dev'));
+app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use('/wiki', wikiRoute)
 app.use('/user', userRoute)
